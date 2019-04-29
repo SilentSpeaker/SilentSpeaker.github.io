@@ -9,8 +9,8 @@
     <meta name="description" content="本文仅介绍Spring Security的基本使用。 Spring Security简介Spring Security 基于 Spring 框架，提供了一套 Web 应用安全性的完整解决方案。Web 应用的安全性包括用户认证（Authentication）和用户授权（Authorization）两个部分。  认证（Authentication）：“认证”是建立主体（principal）的过程。“主">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Security 实现用户登陆">
-<meta property="og:url" content="http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="/2019/03/06/Spring-Security-实现用户登陆/index.html">
+<meta property="og:site_name" content="SILENT">
 <meta property="og:description" content="本文仅介绍Spring Security的基本使用。 Spring Security简介Spring Security 基于 Spring 框架，提供了一套 Web 应用安全性的完整解决方案。Web 应用的安全性包括用户认证（Authentication）和用户授权（Authorization）两个部分。  认证（Authentication）：“认证”是建立主体（principal）的过程。“主">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://raw.githubusercontent.com/SilentSpeaker/security-application/master/src/main/resources/static/img/noUser.png">
@@ -99,6 +99,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2019/04/27/Bootstrap的基础使用/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2019/03/06/Thymeleaf-基础/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -113,16 +115,16 @@
     <br>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&text=Spring Security 实现用户登陆"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&is_video=false&description=Spring Security 实现用户登陆"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Spring Security 实现用户登陆&body=Check out this article: http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&name=Spring Security 实现用户登陆&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2019/03/06/Spring-Security-实现用户登陆/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2019/03/06/Spring-Security-实现用户登陆/&text=Spring Security 实现用户登陆"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2019/03/06/Spring-Security-实现用户登陆/&is_video=false&description=Spring Security 实现用户登陆"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring Security 实现用户登陆&body=Check out this article: /2019/03/06/Spring-Security-实现用户登陆/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/03/06/Spring-Security-实现用户登陆/&name=Spring Security 实现用户登陆&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -146,7 +148,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Hexo</span>
+        <span itemprop="name">SILENT</span>
       </span>
       
     <div class="postdate">
@@ -265,16 +267,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&text=Spring Security 实现用户登陆"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&is_video=false&description=Spring Security 实现用户登陆"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Spring Security 实现用户登陆&body=Check out this article: http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/03/06/Spring-Security-实现用户登陆/&name=Spring Security 实现用户登陆&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2019/03/06/Spring-Security-实现用户登陆/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2019/03/06/Spring-Security-实现用户登陆/&text=Spring Security 实现用户登陆"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2019/03/06/Spring-Security-实现用户登陆/&is_video=false&description=Spring Security 实现用户登陆"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Spring Security 实现用户登陆&body=Check out this article: /2019/03/06/Spring-Security-实现用户登陆/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2019/03/06/Spring-Security-实现用户登陆/&title=Spring Security 实现用户登陆"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/03/06/Spring-Security-实现用户登陆/&name=Spring Security 实现用户登陆&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -292,7 +294,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2019 John Doe
+    Copyright &copy; 2019 Shen Xi
   </div>
   <div class="footer-right">
     <nav>

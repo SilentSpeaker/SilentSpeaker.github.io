@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="用eclipse新建maven工程（simple project）hello springboot!1.修改pom.xml如下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8">
+<meta name="keywords" content="MySql,SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot+Mybatis CRUD">
+<meta property="og:url" content="/2018/12/14/SpringBoot+Mybatis CRUD/index.html">
+<meta property="og:site_name" content="SILENT">
+<meta property="og:description" content="用eclipse新建maven工程（simple project）hello springboot!1.修改pom.xml如下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://www.silentspeaker.xyz/static/halo-frontend/images/thumbnail/thumbnail-2.jpg">
+<meta property="og:updated_time" content="2019-04-28T21:00:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot+Mybatis CRUD">
+<meta name="twitter:description" content="用eclipse新建maven工程（simple project）hello springboot!1.修改pom.xml如下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8">
+<meta name="twitter:image" content="http://www.silentspeaker.xyz/static/halo-frontend/images/thumbnail/thumbnail-2.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>SpringBoot+Mybatis CRUD</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+	<script type="text/javascript" src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+    <style>
+        .typed-cursor{
+            opacity: 1;
+            animation: typedjsBlink 0.7s infinite;
+            -webkit-animation: typedjsBlink 0.7s infinite;
+            animation: typedjsBlink 0.7s infinite;
+        }
+        @keyframes typedjsBlink{
+            50% { opacity: 0.0; }
+        }
+        @-webkit-keyframes typedjsBlink{
+            0% { opacity: 1; }
+            50% { opacity: 0.0; }
+            100% { opacity: 1; }
+        }
+        .typed-fade-out{
+            opacity: 0;
+            transition: opacity .25s;
+            -webkit-animation: 0;
+            animation: 0;
+        }
+    </style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/SilentSpeaker?tab=repositories">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/03/06/Thymeleaf-基础/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/12/07/Java基础整理/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2018/12/14/SpringBoot+Mybatis CRUD/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2018/12/14/SpringBoot+Mybatis CRUD/&text=SpringBoot+Mybatis CRUD"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2018/12/14/SpringBoot+Mybatis CRUD/&is_video=false&description=SpringBoot+Mybatis CRUD"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SpringBoot+Mybatis CRUD&body=Check out this article: /2018/12/14/SpringBoot+Mybatis CRUD/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2018/12/14/SpringBoot+Mybatis CRUD/&name=SpringBoot+Mybatis CRUD&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用eclipse新建maven工程（simple-project）"><span class="toc-number">1.</span> <span class="toc-text">用eclipse新建maven工程（simple project）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-springboot"><span class="toc-number">1.1.</span> <span class="toc-text">hello springboot!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-修改pom-xml如下："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.修改pom.xml如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在src-main-java下建立com-example-demo包"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.在src/main/java下建立com.example.demo包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-在src-main-java下建立com-example-demo-web包"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.在src/main/java下建立com.example.demo.web包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用Mybatis"><span class="toc-number">1.2.</span> <span class="toc-text">调用Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在pom-xml里加入相关包："><span class="toc-number">1.2.1.</span> <span class="toc-text">1.在pom.xml里加入相关包：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在src-main-resources下建立application-properties配置文件："><span class="toc-number">1.2.2.</span> <span class="toc-text">2.在src/main/resources下建立application.properties配置文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-按上述目录树建包和类"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.按上述目录树建包和类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-建立-jsp文件，目录在上述配置文件中已指定"><span class="toc-number">1.2.4.</span> <span class="toc-text">3.建立.jsp文件，目录在上述配置文件中已指定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-修改HelloController-java"><span class="toc-number">1.2.5.</span> <span class="toc-text">4.修改HelloController.java</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        SpringBoot+Mybatis CRUD
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">SILENT</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-12-14T06:35:00.000Z" itemprop="datePublished">2018-12-14</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/后端/">后端</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/MySql/">MySql</a>, <a class="tag-link" href="/tags/SpringBoot/">SpringBoot</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="用eclipse新建maven工程（simple-project）"><a href="#用eclipse新建maven工程（simple-project）" class="headerlink" title="用eclipse新建maven工程（simple project）"></a>用eclipse新建maven工程（simple project）</h1><h2 id="hello-springboot"><a href="#hello-springboot" class="headerlink" title="hello springboot!"></a>hello springboot!</h2><h3 id="1-修改pom-xml如下："><a href="#1-修改pom-xml如下：" class="headerlink" title="1.修改pom.xml如下："></a>1.修改<code>pom.xml</code>如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">	&lt;groupId&gt;com.example&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;demo&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;packaging&gt;jar&lt;/packaging&gt;</span><br><span class="line"></span><br><span class="line">	&lt;name&gt;demo&lt;/name&gt;</span><br><span class="line">	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">	&lt;parent&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;2.0.6.RELEASE&lt;/version&gt;</span><br><span class="line">		&lt;relativePath /&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">	&lt;/parent&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;properties&gt;</span><br><span class="line">		&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">		&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</span><br><span class="line">		&lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">	&lt;/properties&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line">	&lt;build&gt;</span><br><span class="line">		&lt;plugins&gt;</span><br><span class="line">			&lt;plugin&gt;</span><br><span class="line">				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">			&lt;/plugin&gt;</span><br><span class="line">		&lt;/plugins&gt;</span><br><span class="line">	&lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-在src-main-java下建立com-example-demo包"><a href="#2-在src-main-java下建立com-example-demo包" class="headerlink" title="2.在src/main/java下建立com.example.demo包"></a><strong>2</strong>.在<code>src/main/java</code>下建立com.example.demo包</h3><p>建立DemoApplication类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demo;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class DemoApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>开发任何一个Spring Boot项目，都会用到这样的被<code>@SpringBootApplication</code>注解的启动类，<code>@SpringBootApplication</code>注解是Spring Boot的核心注解，它是一个组合注解。（<a href="https://mp.weixin.qq.com/s/1yHtaoSqqIJItIXByvV5QA" target="_blank" rel="noopener">springboot的启动</a>）</p>
+<h3 id="3-在src-main-java下建立com-example-demo-web包"><a href="#3-在src-main-java下建立com-example-demo-web包" class="headerlink" title="3.在src/main/java下建立com.example.demo.web包"></a><strong>3</strong>.在<code>src/main/java</code>下建立com.example.demo.web包</h3><p>建立HelloController类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demo.web;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"> </span><br><span class="line">@RestController</span><br><span class="line">public class HelloController &#123;</span><br><span class="line"> </span><br><span class="line">    @RequestMapping(&quot;/hello&quot;)</span><br><span class="line">    public String hello() &#123;</span><br><span class="line">        return &quot;hello springboot!&quot;;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建包时==注意==：<br>被<code>@SpringBootApplication</code>注解的启动类DemoApplication 所在的包要是父级包，HelloController要在它子包内才行<br><span id="目录树">例子：</span></p>
+<pre><code>com  
+ +- example  
+     +- demo  
+         +- DemoApplication.java  
+         |  
+         +- pojo  
+         |   +- Category.java  
+         |  
+         +- mapper  
+         |   +- CategoryMapper.java  
+         |  
+         +- web  
+             +- HelloController.java  
+</code></pre><p>此时运行DemoApplication.java，出现</p>
+<pre><code>  .   ____          _            __ _ _
+ /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  &apos;  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.6.RELEASE)
+</code></pre><p>且访问<code>http://localhost:8080/hello</code>能出现<code>hello springboot!</code>。</p>
+<h2 id="调用Mybatis"><a href="#调用Mybatis" class="headerlink" title="调用Mybatis"></a>调用Mybatis</h2><h3 id="1-在pom-xml里加入相关包："><a href="#1-在pom-xml里加入相关包：" class="headerlink" title="1.在pom.xml里加入相关包："></a><strong>1</strong>.在<code>pom.xml</code>里加入相关包：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- servlet依赖. --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;jstl&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- tomcat的支持. --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;tomcat-embed-jasper&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- mybatis --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;1.1.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- mysql --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-在src-main-resources下建立application-properties配置文件："><a href="#2-在src-main-resources下建立application-properties配置文件：" class="headerlink" title="2.在src/main/resources下建立application.properties配置文件："></a><strong>2</strong>.在<code>src/main/resources</code>下建立application.properties<span id="配置文件">配置文件：</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">spring.mvc.view.prefix=/WEB-INF/jsp/</span><br><span class="line">spring.mvc.view.suffix=.jsp</span><br><span class="line">spring.datasource.url=jdbc:mysql://127.0.0.1:3306/how2java?characterEncoding=UTF-8&amp;useSSL=false</span><br><span class="line">spring.datasource.username=root</span><br><span class="line">spring.datasource.password=admin</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+<h3 id="3-按上述目录树建包和类"><a href="#3-按上述目录树建包和类" class="headerlink" title="3.按上述目录树建包和类"></a><strong>3</strong>.按<a href="#目录树">上述</a>目录树建包和类</h3><p>Category.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demo.pojo;</span><br><span class="line"></span><br><span class="line">public class Category &#123;</span><br><span class="line">	  </span><br><span class="line">    private int id;</span><br><span class="line">      </span><br><span class="line">    private String name;</span><br><span class="line">    public int getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setId(int id) &#123;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CategoryMapper.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demo.mapper;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">import org.apache.ibatis.annotations.Mapper;</span><br><span class="line">import org.apache.ibatis.annotations.Select;</span><br><span class="line"></span><br><span class="line">import com.example.demo.pojo.Category;</span><br><span class="line"></span><br><span class="line">@Mapper</span><br><span class="line">public interface CategoryMapper &#123;</span><br><span class="line"> </span><br><span class="line">    @Select(&quot;select * from category_ &quot;)</span><br><span class="line">    List&lt;Category&gt; findAll();</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-建立-jsp文件，目录在上述配置文件中已指定"><a href="#3-建立-jsp文件，目录在上述配置文件中已指定" class="headerlink" title="3.建立.jsp文件，目录在上述配置文件中已指定"></a><strong>3</strong>.建立.jsp文件，目录在上述<a href="#配置文件">配置文件</a>中已指定</h3><p>在<code>src/main/webapp/WEB-INF/jsp/</code>下建立hello.jsp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt; </span><br><span class="line">&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot;%&gt;   </span><br><span class="line">&lt;table align=&apos;center&apos; border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;id&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;name&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;c:forEach items=&quot;$&#123;cs&#125;&quot; var=&quot;c&quot; varStatus=&quot;st&quot;&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;$&#123;c.id&#125;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;$&#123;c.name&#125;&lt;/td&gt;          </span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/c:forEach&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-修改HelloController-java"><a href="#4-修改HelloController-java" class="headerlink" title="4.修改HelloController.java"></a><strong>4</strong>.修改HelloController.java</h3><p>将<code>@RestController</code>修改为<code>@Controller</code>，添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">	CategoryMapper categoryMapper;</span><br></pre></td></tr></table></figure>
+<p>为<code>hello()</code>方法添加<code>Model m</code>参数以传输数据，修改成如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demo.web;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.stereotype.Controller;</span><br><span class="line">import org.springframework.ui.Model;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line">import com.example.demo.mapper.CategoryMapper;</span><br><span class="line">import com.example.demo.pojo.Category;</span><br><span class="line"></span><br><span class="line">@Controller</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">	@Autowired</span><br><span class="line">	CategoryMapper categoryMapper;</span><br><span class="line"></span><br><span class="line">	@RequestMapping(&quot;/hello&quot;)</span><br><span class="line">	public String hello(Model m) &#123;</span><br><span class="line">		List&lt;Category&gt; cs = categoryMapper.findAll();</span><br><span class="line">		m.addAttribute(&quot;cs&quot;, cs);</span><br><span class="line">		return &quot;hello&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时运行DemoApplication.java，出现</p>
+<pre><code>  .   ____          _            __ _ _
+ /\\ / ___&apos;_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | &apos;_ | &apos;_| | &apos;_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  &apos;  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.6.RELEASE)
+</code></pre><p>且再次访问<code>http://localhost:8080/hello</code>就能出现表。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/SilentSpeaker?tab=repositories">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用eclipse新建maven工程（simple-project）"><span class="toc-number">1.</span> <span class="toc-text">用eclipse新建maven工程（simple project）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hello-springboot"><span class="toc-number">1.1.</span> <span class="toc-text">hello springboot!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-修改pom-xml如下："><span class="toc-number">1.1.1.</span> <span class="toc-text">1.修改pom.xml如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在src-main-java下建立com-example-demo包"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.在src/main/java下建立com.example.demo包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-在src-main-java下建立com-example-demo-web包"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.在src/main/java下建立com.example.demo.web包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用Mybatis"><span class="toc-number">1.2.</span> <span class="toc-text">调用Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在pom-xml里加入相关包："><span class="toc-number">1.2.1.</span> <span class="toc-text">1.在pom.xml里加入相关包：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在src-main-resources下建立application-properties配置文件："><span class="toc-number">1.2.2.</span> <span class="toc-text">2.在src/main/resources下建立application.properties配置文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-按上述目录树建包和类"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.按上述目录树建包和类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-建立-jsp文件，目录在上述配置文件中已指定"><span class="toc-number">1.2.4.</span> <span class="toc-text">3.建立.jsp文件，目录在上述配置文件中已指定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-修改HelloController-java"><span class="toc-number">1.2.5.</span> <span class="toc-text">4.修改HelloController.java</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2018/12/14/SpringBoot+Mybatis CRUD/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2018/12/14/SpringBoot+Mybatis CRUD/&text=SpringBoot+Mybatis CRUD"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2018/12/14/SpringBoot+Mybatis CRUD/&is_video=false&description=SpringBoot+Mybatis CRUD"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SpringBoot+Mybatis CRUD&body=Check out this article: /2018/12/14/SpringBoot+Mybatis CRUD/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2018/12/14/SpringBoot+Mybatis CRUD/&title=SpringBoot+Mybatis CRUD"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2018/12/14/SpringBoot+Mybatis CRUD/&name=SpringBoot+Mybatis CRUD&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Shen Xi
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/SilentSpeaker?tab=repositories">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
