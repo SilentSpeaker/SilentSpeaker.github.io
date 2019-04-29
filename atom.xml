@@ -161,9 +161,9 @@
       <category term="后端" scheme="/categories/%E5%90%8E%E7%AB%AF/"/>
     
     
-      <category term="MySql" scheme="/tags/MySql/"/>
-    
       <category term="SpringBoot" scheme="/tags/SpringBoot/"/>
+    
+      <category term="MySql" scheme="/tags/MySql/"/>
     
   </entry>
   

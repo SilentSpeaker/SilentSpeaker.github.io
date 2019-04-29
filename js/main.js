@@ -116,24 +116,24 @@ $(function () {
     if (location.pathname !== '/') return;
     //$.get("/data/shanbayToday.json", function (data) {
     var data = {
-        content1: 'Hello darkness, my old friend^1500',
+        content1: 'Hello darkness, my old friend, ^1500',
         content2: 'I’ve come to talk with you again^1500',
-        content3: 'Because a vision softly creeping^1500',
+        content3: 'Because a vision softly creeping, ^1500',
         content4: 'Left its seeds while I was sleeping^1500',
         content5: 'And the vision that was planted in my brain^1700',
-        content6: 'Still remains^700',
+        content6: 'Still remains, ^700',
         content7: 'Within the sound of silence^1700',
         author: 'Paul Simon ，Garfunkel'
     }//data.data;
     // var str =  data.content+'\n'
     // + data.translation+"\n---- "
     // +data.author +'\n'
-    var str = data.content1 + ', '
+    var str = data.content1 // + ', '
         + data.content2 + '<br>'
-        + data.content3 + ', '
+        + data.content3 // + ', '
         + data.content4 + '<br>'
         + data.content5 + '<br>'
-        + data.content6 + ', '
+        + data.content6 // + ', '
         + data.content7 + '<br>---- '
 
     var options = {
