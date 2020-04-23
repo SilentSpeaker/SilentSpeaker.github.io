@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thymeleaf(基础)">
 <meta property="og:url" content="/2019/03/06/Thymeleaf-基础/index.html">
-<meta property="og:site_name" content="SILENT">
+<meta property="og:site_name" content="SHELLI">
 <meta property="og:description" content="Thymeleaf简介：  Java模板引擎。 自然模板，原型即页面。 语法优雅易懂。 遵从Web标准   显著特征： 12&amp;lt;span th:text=&quot;...&quot;&amp;gt;&amp;lt;span data-th-text=&quot;...&quot;&amp;gt;  标准表达式变量表达式语法：${...} 1&amp;lt;span th:text=&quot;$&amp;#123;book.author.name&amp;#125;&quot;&amp;gt; 消息表达式">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-03-06T14:34:35.638Z">
@@ -125,6 +125,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/03/06/Thymeleaf-基础/&title=Thymeleaf(基础)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=/2019/03/06/Thymeleaf-基础/&title=Thymeleaf(基础)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/03/06/Thymeleaf-基础/&name=Thymeleaf(基础)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=/2019/03/06/Thymeleaf-基础/&t=Thymeleaf(基础)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -148,7 +149,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">SILENT</span>
+        <span itemprop="name">SHELLI</span>
       </span>
       
     <div class="postdate">
@@ -466,6 +467,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/03/06/Thymeleaf-基础/&title=Thymeleaf(基础)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=/2019/03/06/Thymeleaf-基础/&title=Thymeleaf(基础)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/03/06/Thymeleaf-基础/&name=Thymeleaf(基础)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=/2019/03/06/Thymeleaf-基础/&t=Thymeleaf(基础)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -483,22 +485,27 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2019 Shen Xi
+      &copy;
+    
+    
+    2019-2020
+    <a href="http://www.beian.miit.gov.cn/">浙ICP备20013512号</a>
+    <!--Shen Xi-->
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
+        
           <li><a href="/">Home</a></li>
-         
+        
           <li><a href="/tags/">tags</a></li>
-         
+        
           <li><a href="/categories/">categories</a></li>
-         
+        
           <li><a href="/about/">About</a></li>
-         
+        
           <li><a href="/archives/">Writing</a></li>
-         
+        
           <li><a href="https://github.com/SilentSpeaker?tab=repositories">Projects</a></li>
         
       </ul>
@@ -524,10 +531,10 @@
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
-    $(".highlight .code pre").before(btn);
+    $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
-      target: function(trigger) {
-        return trigger.nextElementSibling;
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
       }
     });
     clip.on('success', function(e) {
@@ -543,6 +550,16 @@
 <!-- Google Analytics -->
 
 <!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?255d1f93887296ddd4b9b9f42360b402";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 <!-- Disqus Comments -->
 

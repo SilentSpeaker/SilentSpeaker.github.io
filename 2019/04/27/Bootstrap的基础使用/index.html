@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bootstrap的基础使用">
 <meta property="og:url" content="/2019/04/27/Bootstrap的基础使用/index.html">
-<meta property="og:site_name" content="SILENT">
+<meta property="og:site_name" content="SHELLI">
 <meta property="og:description" content="Bootstrap的基础使用介绍官网、Bootstrap中文网  基本结构：Bootstrap 提供了一个带有网格系统、链接样式、背景的基本结构。 CSS：全局的 CSS设置、定义基本的 HTML 元素样式、可扩展的 class，以及一个先进的网格系统。 组件：Bootstrap 包含了十几个可重用的组件，用于创建图像、下拉菜单、导航、警告框、弹出框等等。 JavaScript 插件：Bootst">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://www.silentspeaker.xyz/static/halo-frontend/images/thumbnail/thumbnail-8.jpg">
@@ -127,6 +127,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/04/27/Bootstrap的基础使用/&title=Bootstrap的基础使用"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=/2019/04/27/Bootstrap的基础使用/&title=Bootstrap的基础使用"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/04/27/Bootstrap的基础使用/&name=Bootstrap的基础使用&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=/2019/04/27/Bootstrap的基础使用/&t=Bootstrap的基础使用"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -150,7 +151,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">SILENT</span>
+        <span itemprop="name">SHELLI</span>
       </span>
       
     <div class="postdate">
@@ -293,6 +294,7 @@
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/04/27/Bootstrap的基础使用/&title=Bootstrap的基础使用"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=/2019/04/27/Bootstrap的基础使用/&title=Bootstrap的基础使用"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/04/27/Bootstrap的基础使用/&name=Bootstrap的基础使用&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=/2019/04/27/Bootstrap的基础使用/&t=Bootstrap的基础使用"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -310,22 +312,27 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2019 Shen Xi
+      &copy;
+    
+    
+    2019-2020
+    <a href="http://www.beian.miit.gov.cn/">浙ICP备20013512号</a>
+    <!--Shen Xi-->
   </div>
   <div class="footer-right">
     <nav>
       <ul>
-         
+        
           <li><a href="/">Home</a></li>
-         
+        
           <li><a href="/tags/">tags</a></li>
-         
+        
           <li><a href="/categories/">categories</a></li>
-         
+        
           <li><a href="/about/">About</a></li>
-         
+        
           <li><a href="/archives/">Writing</a></li>
-         
+        
           <li><a href="https://github.com/SilentSpeaker?tab=repositories">Projects</a></li>
         
       </ul>
@@ -351,10 +358,10 @@
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
-    $(".highlight .code pre").before(btn);
+    $(".highlight table").before(btn);
     var clip = new ClipboardJS('.btn-copy', {
-      target: function(trigger) {
-        return trigger.nextElementSibling;
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
       }
     });
     clip.on('success', function(e) {
@@ -370,6 +377,16 @@
 <!-- Google Analytics -->
 
 <!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?255d1f93887296ddd4b9b9f42360b402";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
 <!-- Disqus Comments -->
 

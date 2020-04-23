@@ -351,10 +351,9 @@ body h4,
 body h5,
 body h6 {
   display: inline;
-  border-bottom: 1px dashed #ccc;
-  color: #ccc;
   text-decoration: none;
-  font-weight: normal;
+  color: #ccc;
+  font-weight: bold;
   font-size: 0.9rem;
 }
 body h3,
@@ -365,8 +364,11 @@ body h6 {
   margin-bottom: 0.5rem;
 }
 body hr {
-  border: 1px dashed #ccc;
+  border: 0.5px dashed #ccc;
+  opacity: 0.5;
   margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 body strong {
   font-weight: bold;
@@ -429,7 +431,7 @@ body th {
   font-size: 13px;
 }
 body td {
-  padding: 9px 8px 0;
+  padding: 0 8px;
   border-bottom: none;
 }
 @font-face {
@@ -626,7 +628,8 @@ body {
 #header #nav ul li {
   display: inline-block;
   margin-right: 15px;
-  border-right: 1px dotted #2bbc8a;
+  border-right: 1px dotted;
+  border-color: #2bbc8a;
   vertical-align: middle;
 }
 #header #nav ul .icon {
@@ -878,6 +881,14 @@ body {
     float: left;
     margin-right: 2rem;
     font-style: italic;
+  }
+}
+@media print {
+  #header-post {
+    display: none;
+  }
+  #footer-post-container {
+    display: none;
   }
 }
 #footer-post {
@@ -1238,7 +1249,8 @@ article .content .caption {
 #footer li {
   display: inline-block;
   margin-right: 15px;
-  border-right: 1px solid #666;
+  border-right: 1px solid;
+  border-color: #666;
   vertical-align: middle;
 }
 #footer li a {
@@ -1537,38 +1549,6 @@ article .content .caption {
 .highlight .code .emphasis {
   font-style: italic;
 }
-/*
-.coding {
-  position: relative
-}
-
-.coding .prompt {
-  display: inline;
-  white-space: pre-wrap;
-  line-height: 30px;
-  margin-bottom: .75em;
-
-}
-
-.coding .typed-cursor {
-  display: inline;
-}
-
-.coding .typed-cursor:after {
-  display: inline;
-  vertical-align: -.15em;
-  width: .5em;
-  height: 12px;
-  margin-left: 5px;
-  background: #2bbc8a;
-  box-shadow: 0 0 0 rgba(31,240,66,.65);
-  -webkit-animation: cursor-blink 1.25s steps(1) infinite;
-  -o-animation: cursor-blink 1.25s steps(1) infinite;
-  animation: cursor-blink 1.25s steps(1) infinite;
-  content: ''
-}
-
-*/
 pre {
   overflow-x: auto;
   padding: 10px 15px;
@@ -1640,6 +1620,7 @@ code {
   color: #2bbc8a;
 }
 .highlight pre {
+  margin: 0;
   padding: 0;
   border: none;
   background: none;
@@ -1649,6 +1630,7 @@ code {
 }
 .highlight td.gutter {
   text-align: right;
+  opacity: 0.2;
 }
 .highlight .line {
   height: 22px;
