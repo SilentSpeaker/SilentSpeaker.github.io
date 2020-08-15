@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="事务的特点 原子性（Atomicity）生物钟所有操作作为一个整体像原子一样不可分割，要么全部成功，要么全部失败。 一致性（Consistency）事务的执行结果必须从数据库的一个一致性状态到另一个一致性状态。 一致性状态是指：  系统的状态满足数据的完整性约束（主码，参照完整性，check约束等） 系统的状态反应数据库本应描述的现实世界的真实状态，比如转账前后两个账户的金额总和应该保持不变。">
+<meta name="keywords" content="MySql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql 事务&amp;锁">
+<meta property="og:url" content="/2019/12/08/MySql 事务&锁/index.html">
+<meta property="og:site_name" content="SHELLI">
+<meta property="og:description" content="事务的特点 原子性（Atomicity）生物钟所有操作作为一个整体像原子一样不可分割，要么全部成功，要么全部失败。 一致性（Consistency）事务的执行结果必须从数据库的一个一致性状态到另一个一致性状态。 一致性状态是指：  系统的状态满足数据的完整性约束（主码，参照完整性，check约束等） 系统的状态反应数据库本应描述的现实世界的真实状态，比如转账前后两个账户的金额总和应该保持不变。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-08-15T15:53:17.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySql 事务&amp;锁">
+<meta name="twitter:description" content="事务的特点 原子性（Atomicity）生物钟所有操作作为一个整体像原子一样不可分割，要么全部成功，要么全部失败。 一致性（Consistency）事务的执行结果必须从数据库的一个一致性状态到另一个一致性状态。 一致性状态是指：  系统的状态满足数据的完整性约束（主码，参照完整性，check约束等） 系统的状态反应数据库本应描述的现实世界的真实状态，比如转账前后两个账户的金额总和应该保持不变。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>MySql 事务&amp;锁</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+	<script type="text/javascript" src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+    <style>
+        .typed-cursor{
+            opacity: 1;
+            animation: typedjsBlink 0.7s infinite;
+            -webkit-animation: typedjsBlink 0.7s infinite;
+            animation: typedjsBlink 0.7s infinite;
+        }
+        @keyframes typedjsBlink{
+            50% { opacity: 0.0; }
+        }
+        @-webkit-keyframes typedjsBlink{
+            0% { opacity: 1; }
+            50% { opacity: 0.0; }
+            100% { opacity: 1; }
+        }
+        .typed-fade-out{
+            opacity: 0;
+            transition: opacity .25s;
+            -webkit-animation: 0;
+            animation: 0;
+        }
+        /*::selection {
+            color: #fff;
+            background: #088;
+        }*/
+    </style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/shelli-site?tab=repositories">Repositories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/05/15/自定义SpringBoot返回的状态码/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2019/12/08/MySql 事务&amp;锁/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2019/12/08/MySql 事务&amp;锁/&text=MySql 事务&amp;锁"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2019/12/08/MySql 事务&amp;锁/&is_video=false&description=MySql 事务&amp;锁"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MySql 事务&amp;锁&body=Check out this article: /2019/12/08/MySql 事务&amp;锁/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/12/08/MySql 事务&amp;锁/&name=MySql 事务&amp;锁&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=/2019/12/08/MySql 事务&amp;锁/&t=MySql 事务&amp;锁"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的特点"><span class="toc-number">1.</span> <span class="toc-text">事务的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的实现原理"><span class="toc-number">2.</span> <span class="toc-text">事务的实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原子性实现原理逻辑日志（Undo-Log）"><span class="toc-number">2.1.</span> <span class="toc-text">原子性实现原理逻辑日志（Undo Log）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#持久性实现原理（Redo-Log）"><span class="toc-number">2.2.</span> <span class="toc-text">持久性实现原理（Redo Log）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySql的隔离级别"><span class="toc-number">3.</span> <span class="toc-text">MySql的隔离级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隔离性实现原理：锁"><span class="toc-number">4.</span> <span class="toc-text">隔离性实现原理：锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#死锁"><span class="toc-number">4.1.</span> <span class="toc-text">死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他实现并发控制的策略"><span class="toc-number">4.2.</span> <span class="toc-text">其他实现并发控制的策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#故障恢复"><span class="toc-number">5.</span> <span class="toc-text">故障恢复</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        MySql 事务&amp;锁
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">SHELLI</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-12-08T14:55:00.000Z" itemprop="datePublished">2019-12-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/后端/">后端</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/MySql/">MySql</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="事务的特点"><a href="#事务的特点" class="headerlink" title="事务的特点"></a>事务的特点</h3><ul>
+<li><code>原子性（Atomicity）</code>生物钟所有操作作为一个整体像原子一样不可分割，要么全部成功，要么全部失败。</li>
+<li><strong>一致性（Consistency）</strong>事务的执行结果必须从数据库的一个一致性状态到另一个一致性状态。<blockquote>
+<p>一致性状态是指：</p>
+<ol>
+<li>系统的状态满足数据的完整性约束（主码，参照完整性，check约束等）</li>
+<li>系统的状态反应数据库本应描述的现实世界的真实状态，比如转账前后两个账户的金额总和应该保持不变。</li>
+</ol>
+</blockquote>
+</li>
+<li><code>隔离性（Isolation）</code>并发执行的事务不会相互影响，其对数据库的影响和他们串行执行时一样。比如多个用户同时往一个账户转账，最后账户的结果应该和他们按先后次序转账的结果一样。</li>
+<li><code>持久性（Durability）</code>事务一旦提交，其对数据库的更新就是持久的。任何事务或系统故障都不会导致数据丢失。</li>
+</ul>
+<hr>
+<ul>
+<li>在事务的四个特点中，一致性时事务的根本追求，而在某些情况下会对事务的一致性造成破坏：<ul>
+<li>事务的并发执行</li>
+<li>事务故障或系统故障</li>
+</ul>
+</li>
+<li>数据库系统通过并发控制技术和日志恢复技术来避免这种情况的发生<ul>
+<li>并发控制技术保证的事务的隔离性，使数据库的一致性状态不会因为并发执行的操作被破坏。</li>
+<li>日志恢复技术保证了事务的原子性，使一致性状态不会因为事务或系统故障被破坏。同时使已提交的对数据库的修改不会因为系统崩溃而丢失，保证了事务的持久行。</li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid">graph LR 
+事务 --> 隔离性;
+事务 --> 一致性;
+事务 --> 原子性;
+事务 --> 持久性;
+隔离性 --> 并发控制;
+一致性 --> 并发控制;
+一致性 --> 日志恢复;
+原子性 --> 日志恢复;
+持久性 --> 日志恢复;</pre>
+
+<h3 id="事务的实现原理"><a href="#事务的实现原理" class="headerlink" title="事务的实现原理"></a>事务的实现原理</h3><ul>
+<li>事务的原子性是通过 <code>undo log</code> 来实现的</li>
+<li>事务的持久性是通过 <code>redo log</code> 来实现的</li>
+<li>事务的隔离性是通过 <code>（读写锁 + MVCC）</code> 来实现的</li>
+<li>事务的一致性是通过 <code>原子性、持久性、隔离性</code> 来实现的</li>
+</ul>
+<h4 id="原子性实现原理逻辑日志（Undo-Log）"><a href="#原子性实现原理逻辑日志（Undo-Log）" class="headerlink" title="原子性实现原理逻辑日志（Undo Log）"></a>原子性实现原理<strong>逻辑日志（Undo Log）</strong></h4><ul>
+<li><code>Undo Log</code>是为了实现事务的原子性，在MySql数据库InnoDB存储引擎中，<code>Undo Log</code>是来实现多版本并发控制（简称：MVCC）</li>
+<li>在操作任何数据之前，首先将数据备份到一个地方（这个存储数据备份的地方称为<code>Undo Log</code>）。然后进行数据的修改。如果出现了错误或者用户执行了<code>ROLLBACK</code>语句，系统可以利用<code>Undo Log</code>中的备份将数据恢复到事务开始之前的状态</li>
+</ul>
+<h4 id="持久性实现原理（Redo-Log）"><a href="#持久性实现原理（Redo-Log）" class="headerlink" title="持久性实现原理（Redo Log）"></a>持久性实现原理<strong>（Redo Log）</strong></h4><ul>
+<li>和<code>Undo Log</code>相反，<code>Redo Log</code>记录的是新数据的备份。在事务提交前，只要将<code>Redo Log</code>持久化即可，不需要将数据持久化。当系统崩溃时，虽然数据没有持久化，但是<code>Redo Log</code>已经持久化。系统可以根据<code>Redo Log</code>的内容，将所有数据恢复到最新的状态</li>
+</ul>
+<h3 id="MySql的隔离级别"><a href="#MySql的隔离级别" class="headerlink" title="MySql的隔离级别"></a>MySql的隔离级别</h3><ul>
+<li>事务具有隔离性，理论上来说事务之间的执行不应该相互影响，其对数据库的影响应该和他们串行执行时一样。</li>
+<li>然而完全的隔离级别会导致系统并发性能很低，降低对资源的利用率，因而实际商队隔离性的要求会有所放宽，这也会一定程度造成对数据库一致性要求降低</li>
+<li>SQL标准为事务定义了不同的隔离级别，从低到高依次是<ul>
+<li>读未提交（READ UNCOMMITTED）：对事物处理的读取没有任何限制，不推荐</li>
+<li>读已提交（READ COMMITTED）</li>
+<li>可重复读（PEPEATABLE READ）</li>
+<li>串行化（SERIALLZABLE）</li>
+</ul>
+</li>
+</ul>
+<p>不同的隔离级别可能导致不同的并发异常</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">事务的隔离级别</th>
+<th style="text-align:center">脏读</th>
+<th style="text-align:center">不可重复读</th>
+<th style="text-align:center">幻读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">读未提交（READ UNCOMMITTED）</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">读已提交（READ COMMITTED）</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">可重复读（PEPEATABLE READ）</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center">串行化（SERIALLZABLE）</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="隔离性实现原理：锁"><a href="#隔离性实现原理：锁" class="headerlink" title="隔离性实现原理：锁"></a>隔离性实现原理：锁</h3><ul>
+<li><p>在MySql中，锁可以分为两类：</p>
+<ul>
+<li><p>共享锁：共享锁定是将对象数据变为只读形式，不能进行更新，所以也称为读取锁定；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; select * from user where id = 1 lock in share mode;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排他锁：排他锁是当执行INSERT/UPDATE/DELETE的时候，其他事务不呢个读取该数据，因此也称为写入锁定；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; select * from user where id = 1 for update;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>意向共享锁（IS）和意向排他锁（IX）：获取共享锁或排他锁之前事务必须先获取意向共享锁（IS）或意向排他锁（IX）。[意向锁是InnoDB数据库操作之前自动加的，不需要用户干预]</p>
+</li>
+<li>自增锁：针对自增列自增长的一个特殊的表级别锁<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; SHOW VARIABLES LIKE 'innodb_autoinc_lock_mode';</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>锁的粒度：锁定对象的大小是锁的粒度</p>
+<ul>
+<li>记录</li>
+<li>表</li>
+<li>数据库</li>
+</ul>
+</li>
+</ul>
+<h4 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h4><p>多个事务持有锁并相互循环等待其他事物的锁导致所有的事务都无法继续执行</p>
+<h4 id="其他实现并发控制的策略"><a href="#其他实现并发控制的策略" class="headerlink" title="其他实现并发控制的策略"></a>其他实现并发控制的策略</h4><ul>
+<li>基于时间戳的并发控制</li>
+<li>基于有效性检查的并发控制</li>
+<li>基于快照隔离的并发控制</li>
+</ul>
+<h3 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h3><ul>
+<li>撤销事务undo：将事务更新的所有数据项恢复为日志中的旧值。</li>
+<li>重做事务redo：将事务更新的所有数据项恢复为日志中的新值。</li>
+<li>事务正常回滚/因事务故障中止将进行redo</li>
+<li>系统从崩溃中恢复时将先进行redo再进行undo</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://github.com/shelli-site?tab=repositories">Repositories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的特点"><span class="toc-number">1.</span> <span class="toc-text">事务的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务的实现原理"><span class="toc-number">2.</span> <span class="toc-text">事务的实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原子性实现原理逻辑日志（Undo-Log）"><span class="toc-number">2.1.</span> <span class="toc-text">原子性实现原理逻辑日志（Undo Log）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#持久性实现原理（Redo-Log）"><span class="toc-number">2.2.</span> <span class="toc-text">持久性实现原理（Redo Log）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySql的隔离级别"><span class="toc-number">3.</span> <span class="toc-text">MySql的隔离级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隔离性实现原理：锁"><span class="toc-number">4.</span> <span class="toc-text">隔离性实现原理：锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#死锁"><span class="toc-number">4.1.</span> <span class="toc-text">死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他实现并发控制的策略"><span class="toc-number">4.2.</span> <span class="toc-text">其他实现并发控制的策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#故障恢复"><span class="toc-number">5.</span> <span class="toc-text">故障恢复</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=/2019/12/08/MySql 事务&amp;锁/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=/2019/12/08/MySql 事务&amp;锁/&text=MySql 事务&amp;锁"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=/2019/12/08/MySql 事务&amp;锁/&is_video=false&description=MySql 事务&amp;锁"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MySql 事务&amp;锁&body=Check out this article: /2019/12/08/MySql 事务&amp;锁/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=/2019/12/08/MySql 事务&amp;锁/&title=MySql 事务&amp;锁"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=/2019/12/08/MySql 事务&amp;锁/&name=MySql 事务&amp;锁&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=/2019/12/08/MySql 事务&amp;锁/&t=MySql 事务&amp;锁"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+      &copy;
+    
+    
+    2019-2020
+    <a href="http://www.beian.miit.gov.cn/">浙ICP备20013512号</a>
+    <!--Shen Xi-->
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/tags/">Tags</a></li>
+        
+          <li><a href="/categories/">Categories</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="https://github.com/shelli-site?tab=repositories">Repositories</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+  
+    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+    <script>
+      if (window.mermaid) {
+        mermaid.initialize({theme: 'forest'});
+      }
+    </script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?255d1f93887296ddd4b9b9f42360b402";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
